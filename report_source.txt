@@ -64,7 +64,7 @@ Figure 4. Relative conductivity deviations and extrema (circles), central point 
 @page
 ## Classroom Blind Test
 
-The classroom blind dataset was labelled G13. The archived result, run log and commit file agree on the recorded analysis version. The original run used commit b7e219f8fd79. The numerical results below are from that classroom run [5]. The original result files and figures accompany this report in the classroom_blind folder.
+The classroom blind dataset was labelled G13. The archived result and commit file identify the same pipeline version. The run log agrees with the reported numerical results. The original run used commit b7e219f8fd79. The numerical results below are from that classroom run [5]. The original result files and figures accompany this report in the classroom_blind folder.
 
 L1 gave a correction factor of 3.523, a Fermi-window carrier density of 4.261 × 10<super>11</super> cm<super>−2</super> and corrected mobility of 6.015 × 10<super>4</super> cm<super>2</super> V<super>−1</super> s<super>−1</super>. The blind operating Fermi level was 0.138397 eV, lower than the regular operating point.
 
