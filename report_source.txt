@@ -1,0 +1,79 @@
+# Electrical Characterization of a Graphene on Sapphire Wafer
+
+QXU6028 Polymer Devices | Dataset G13 | Student names and IDs [add all four]
+
+## Context
+
+We characterized a simulated graphene-on-sapphire wafer from three sets of electrical measurements [1,2]. The inferred properties depend on how the measurements are converted into material parameters. We first compared two finite-temperature carrier counts, then selected a density-of-states (DoS) model from signed Hall and sheet-resistance data, and finally reconstructed relative spatial variations. The carrier-count correction was 4.284 at the operating point, the transport data supported the cone model under the specified selection rule, and the resolved conductivity map passed the 3.0% criterion under the repeat-noise test.
+
+## L1 Carrier Counting and Mobility
+
+We used a linear DoS g(E) = cE on the positive-energy branch at 300 K. Both counts weight g(E) by the same Fermi occupation and convert it to an areal density, but the band-edge count integrates from E = 0 and the Fermi-window count from E = E<sub>F</sub>. As positive doping increases, the interval between zero and the Fermi level grows and contains increasingly occupied states included only in the band-edge count. The ratio C = n<sub>band</sub>/n<sub>Fermi</sub> therefore rises over the supplied sweep.
+
+The calculated ratios were 1.000 at neutrality, 2.599 at 0.10 eV and 5.104 at 0.20 eV. Figure 1 places the C = 2 and 4 crossings at 0.07276 and 0.15735 eV. Recomputing the supplied band-edge sweep agreed within a maximum relative difference of 2.53 × 10<super>−12</super>. At the operating point the closed form and numerical Fermi-window count agreed to 3.58 × 10<super>−7</super> relative. These checks quantify numerical agreement. No uncertainty for the input DoS slope or sheet resistivity was supplied.
+
+At the exact metadata operating point of 0.168454 eV and 491.394 Ω/□, the band-edge count was 2.239 × 10<super>12</super> cm<super>−2</super> and the Fermi-window count was 5.227 × 10<super>11</super> cm<super>−2</super>. At fixed sheet resistivity, μ = 1/(enρ) gives 5.672 × 10<super>3</super> and 2.430 × 10<super>4</super> cm<super>2</super> V<super>−1</super> s<super>−1</super>, respectively. This is a change in inferred mobility for the same measurement. For a sensor whose response scales as 1/n, use a sensitivity 4.284 times the band-edge estimate at this operating point, conditional on that response model.
+
+@figure L1_carrier_count
+Figure 1. Band-edge counts (blue) and Fermi-window counts (teal). The ratio plot marks the operating point in red and the C = 2 and 4 crossings in teal.
+
+@page
+## L2 Density of States and Fermi-Level Drift
+
+We averaged three repeats per measurement index and located the signed Hall zero crossing between indices 19 and 20. We divided the Hall channel by its maximum absolute value and the sheet-resistance channel by its own maximum. The two-carrier model with a common mobility gives R<sub>H</sub> proportional to (p − n)/(p + n)<super>2</super> and R<sub>xx</sub> proportional to 1/(p + n). We calculated the carrier populations in the prescribed Fermi windows above and below each candidate Fermi level [2]. In the normalized two-channel plane, each measured pair was assigned the Fermi level of its nearest model point. The squared distances from all 49 pairs entered the RMS comparison.
+
+The cone RMS was 0.01740. The best hard-gap candidate had E<sub>g</sub> = 0.50 k<sub>B</sub>T and an RMS of 0.01547. The residual fell by 11.1%, short of the required 15%, and the candidate gap was below k<sub>B</sub>T. We therefore report the ideal cone and E<sub>g</sub> = 0 in the results file. The inferred Fermi level rose overall from −0.0592 to +0.1368 eV in measurement order.
+
+@figure L2_inversion
+Figure 2. Signed Hall repeats and neutrality bracket, measured pairs (red) against the selected cone (blue), inferred Fermi trajectory with the 16th–84th percentile band, and the candidate residuals. The reference line in D is 0.85 times the cone residual.
+
+@page
+## L2 Uncertainty and Device Choice
+
+We resampled one of the three repeats at each index 200 times, normalizing and fitting each replicate in the same way. The selected gap median and 16th–84th percentile interval were 0 and [0, 0] k<sub>B</sub>T, with a 0/200 hard-gap selection count. The median width of the pointwise trajectory intervals was 2.20 meV. The zero gap spread reflects repeated selection of the cone under a thresholded rule. It does not establish an exactly zero physical gap. At 300 K, k<sub>B</sub>T = 25.85 meV, and the small residual gain for a 0.50 k<sub>B</sub>T candidate leaves a subthermal gap unresolved. The result supports prioritizing sensor or interconnect use. A switching application that relies on suppressing thermal off-state carriers would require independent evidence of a usable gap.
+
+@figure L2_channel_overlays
+Figure 3. Signed Hall and sheet-resistance overlays for the selected cone (blue) and averaged measurements (red), plotted against the inferred Fermi level.
+
+## L3 Spatial Inversion
+
+We fit d = Am using the mean of three 128-reading scans and a 10 × 10 grid. The matrix row sums were zero to 1.67 × 10<super>−16</super>, so the scan cannot identify a uniform offset. The numerical rank was 92 out of 100, indicating additional unobservable spatial modes. We projected out the uniform component and used first differences between neighboring pixels to penalize roughness, minimizing the squared residual plus η times the squared roughness. The reconstructed mean was below 10<super>−12</super> in absolute value.
+
+We retained the prescribed reference η = 1.331 × 10<super>−3</super>. Over five strengths from 0.01 to 100 times that value, lower strengths reduced the residual but changed the peak little near the reference. At the largest strength the peak fell to 1.48%, illustrating the attenuation possible with stronger smoothing. At the reference strength the largest positive deviation was +1.702% at (0.3, −0.3), and the largest negative deviation was −1.765% at (−1.5, −1.5), with coordinates in probe pitches.
+
+@page
+## L3 Resolution and Wafer Decision
+
+We passed mean-zero unit impulses at a central and an off-center pixel through the forward and inverse models. We estimated effective FWHM from the second moment of each reconstructed positive lobe, because the discrete half-height contour is coarse. The widths were 1.44 and 1.30 probe pitches, so we report the larger of these two tests, 1.44 pitches. This estimate is local to the tested positions. Narrower features can be attenuated or blurred.
+
+The RMS of the per-channel repeat standard deviations was 5.29 × 10<super>−7</super> in scan units. We reconstructed 500 independent Gaussian noise vectors using the per-channel repeat standard deviations. The 95th percentile of the largest absolute noise pixel was 8.95 × 10<super>−6</super> of the reference conductivity, or 0.000895 percentage points. We retained the prescribed single-repeat noise scale for the detection test, although the map itself uses the scan mean.
+
+The largest absolute reconstructed deviation was 1.7653%. Adding and subtracting the detection limit gives 1.7644% to 1.7662%, entirely below 3.0% [3]. The resolved map is a clear pass under the prescribed repeat-noise model. This envelope omits model bias and the unobservable components of the true conductivity field. The 95th percentile is a noise calibration for the map maximum, not an unconditional probability that the wafer meets specification.
+
+@figure L3_reconstruction
+Figure 4. Relative conductivity deviations and extrema (circles), central point response, regularization tradeoff with the selected strength in red, and the matrix singular values.
+
+@page
+## Transfer to a Printed Polymer OFET
+
+For a printed polymer organic field-effect transistor, the gate changes the occupation of a disordered distribution of localized states. Trapped charge need not contribute to current in the same way as mobile charge. Chapter 3 derives μ = 1/(enρ) [4], illustrating why mobility extracted from a resistance measurement depends on the inferred mobile density. For an OFET, a gate-charge model must distinguish trapped from mobile charge, and contact resistance can bias the channel resistance. Hopping mobility can also vary with field, temperature and carrier density, so the graphene cone and common-mobility transport closure do not carry over directly. Spatial variations in film thickness, morphology or trap density can contribute to differences in current across printed devices. A spatial map could support process control, provided its forward model describes the geometry and transport of the printed film, and its resolution is tested against the relevant defect size.
+
+## Conclusion
+
+Changing the carrier-counting convention changed the inferred mobility by a factor of 4.284 for the same sheet resistivity. Signed transport supported the cone under the prescribed model-selection rule, with insufficient evidence to resolve a small gap. The spatial inversion supported a 3.0% pass for the resolved conductivity variations. These are linked interpretations of the same wafer. The spatial inversion uses the supplied relative-conductivity matrix and does not feed the numerical L1 correction or L2 trajectory into that matrix.
+
+## Critical Self Assessment
+
+One weakness is that the L2 bootstrap measures stability to the three observed repeats and the prescribed selection rule. It cannot measure bias from the assumed symmetric density of states or common electron and hole mobility. The preferred cone therefore does not exclude a small gap, although its selected bootstrap interval collapses to zero. A useful remedy would be to collect signed Hall and resistance data at additional temperatures and compare joint fits that allow separate mobilities. Controlled simulated gaps near the decision boundary would also show how frequently the selection rule misses a small gap.
+
+A second weakness is that the L3 noise test propagates independent channel scatter while the inversion suppresses poorly observed spatial modes. Its narrow decision envelope can therefore understate uncertainty for defects with unfavorable size or position. Repeating the scan more times would help estimate channel covariance. Injecting positive and negative features of different widths at multiple positions, and validating them against an independent scan geometry, would quantify attenuation and define which defects the 3.0% pass actually covers.
+
+## References
+
+[1] Sun, Y. (2026). QXU6028 Student Assessment Brief. Queen Mary Engineering School.
+
+[2] Sun, Y. (2026). QXU6028 Virtual Lab Practical Methods Guide. Queen Mary Engineering School.
+
+[3] Sun, Y. (2026). QXU6028 Virtual Labs L1 L2 L3 Session Slides, slide 15. Queen Mary Engineering School.
+
+[4] Sun, Y. (2026). QXU6028 Chapter 3 Carrier Counting and Mobility. Lecture cited in Coursework Report Guidance, slide 10. Check the slide number against the original lecture before submission.
