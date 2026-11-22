@@ -9,7 +9,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.enums import TA_LEFT
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
-from reportlab.platypus import SimpleDocTemplate, Paragraph, PageBreak, KeepTogether
+from reportlab.platypus import SimpleDocTemplate, Paragraph, PageBreak, KeepTogether, Image
 from figures import make_figures
 
 root=Path(__file__).resolve().parent
@@ -35,6 +35,14 @@ styles={
     "body": ParagraphStyle("Body",fontName=regular,fontSize=10.1,leading=13.3,spaceAfter=8,alignment=TA_LEFT),
     "caption": ParagraphStyle("Caption",fontName=regular,fontSize=8.7,leading=11.5,spaceAfter=8,textColor=colors.HexColor("#374151")),
 }
+member_font = Path("C:/Windows/Fonts/Deng.ttf")
+if not member_font.exists():
+    member_font = Path("/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc")
+if member_font.exists():
+    pdfmetrics.registerFont(TTFont("MemberNames", str(member_font)))
+styles["member"] = ParagraphStyle("Member", parent=styles["body"],
+                                  fontName="MemberNames" if member_font.exists() else regular,
+                                  spaceAfter=2)
 story=[]
 lines=(root/"report_source.txt").read_text(encoding="utf-8-sig").splitlines()
 for i,line in enumerate(lines):
@@ -42,6 +50,14 @@ for i,line in enumerate(lines):
         story.append(Paragraph(escape(line[2:]),styles["title"]))
     elif line.startswith("## "):
         story.append(Paragraph(escape(line[3:]),styles["heading"]))
+    elif line.startswith("@member "):
+        story.append(Paragraph(escape(line[8:]), styles["member"]))
+    elif line=="@blindmap":
+        figure = Image(str(root/"classroom_blind"/"figures"/"L3_map.png"))
+        scale = min(310/figure.imageWidth, 255/figure.imageHeight)
+        figure.drawWidth = scale*figure.imageWidth
+        figure.drawHeight = scale*figure.imageHeight
+        story.append(KeepTogether([figure, Paragraph(escape(lines[i+1]),styles["caption"])]))
     elif line=="@page":
         story.append(PageBreak())
     elif line.startswith("@figure "):

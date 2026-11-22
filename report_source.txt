@@ -1,6 +1,14 @@
 # Electrical Characterization of a Graphene on Sapphire Wafer
 
-QXU6028 Polymer Devices | Dataset G13 | Student names and IDs [add all four]
+QXU6028 Polymer Devices | Group P13 | Dataset code G13
+
+@member 马毓琛 | 2023304327
+
+@member 张昊 | 2023304290
+
+@member 常雅欣 | 2023304286 / 231199498
+
+@member 曾子芩 | 2023304371 / 231200299
 
 ## Context
 
@@ -54,13 +62,27 @@ The largest absolute reconstructed deviation was 1.7653%. Adding and subtracting
 Figure 4. Relative conductivity deviations and extrema (circles), central point response, regularization tradeoff with the selected strength in red, and the matrix singular values.
 
 @page
+## Classroom Blind Test
+
+The classroom blind dataset was labelled G13. The archived result, run log and commit file agree on the recorded analysis version. The original run used commit b7e219f8fd79. The numerical results below are from that classroom run [5]. The original result files and figures accompany this report in the classroom_blind folder.
+
+L1 gave a correction factor of 3.523, a Fermi-window carrier density of 4.261 × 10<super>11</super> cm<super>−2</super> and corrected mobility of 6.015 × 10<super>4</super> cm<super>2</super> V<super>−1</super> s<super>−1</super>. The blind operating Fermi level was 0.138397 eV, lower than the regular operating point.
+
+L2 selected the cone with a reported gap of zero. The archived RMS residuals were 0.018338 for the cone and 0.017396 for the best hard-gap candidate, a 5.1% improvement. The 54 inferred Fermi levels ran from -0.0691 eV to +0.1666 eV, with an overall rise across the acquisition sequence.
+
+L3 produced a mean-zero map with 100 finite cells. The peak absolute deviation was 5.6588%, with a detection limit of 0.00628 percentage points and an estimated resolution of 1.44 probe pitches. The repeat-noise envelope was 5.6525% to 5.6651%, above the 3.0% specification throughout. The archived decision was a clear fail. The regular reconstruction passed, so the two datasets illustrate how the same specification yields different decisions.
+
+@blindmap
+Figure 5. Original classroom blind conductivity map from the archived run.
+
+@page
 ## Transfer to a Printed Polymer OFET
 
 For a printed polymer organic field-effect transistor, the gate changes the occupation of a disordered distribution of localized states. Trapped charge need not contribute to current in the same way as mobile charge. Chapter 3 derives μ = 1/(enρ) [4], illustrating why mobility extracted from a resistance measurement depends on the inferred mobile density. For an OFET, a gate-charge model must distinguish trapped from mobile charge, and contact resistance can bias the channel resistance. Hopping mobility can also vary with field, temperature and carrier density, so the graphene cone and common-mobility transport closure do not carry over directly. Spatial variations in film thickness, morphology or trap density can contribute to differences in current across printed devices. A spatial map could support process control, provided its forward model describes the geometry and transport of the printed film, and its resolution is tested against the relevant defect size.
 
 ## Conclusion
 
-Changing the carrier-counting convention changed the inferred mobility by a factor of 4.284 for the same sheet resistivity. Signed transport supported the cone under the prescribed model-selection rule, with insufficient evidence to resolve a small gap. The spatial inversion supported a 3.0% pass for the resolved conductivity variations. These are linked interpretations of the same wafer. The spatial inversion uses the supplied relative-conductivity matrix and does not feed the numerical L1 correction or L2 trajectory into that matrix.
+Changing the carrier-counting convention changed the inferred mobility by a factor of 4.284 for the same sheet resistivity. Signed transport supported the cone under the prescribed model-selection rule, with insufficient evidence to resolve a small gap. The regular spatial inversion passed the 3.0% criterion for the resolved variations. The classroom blind scan failed the same criterion. These are linked interpretations of the same wafer. The spatial inversion uses the supplied relative-conductivity matrix and does not feed the numerical L1 correction or L2 trajectory into that matrix.
 
 ## Critical Self Assessment
 
@@ -77,3 +99,5 @@ A second weakness is that the L3 noise test propagates independent channel scatt
 [3] Sun, Y. (2026). QXU6028 Virtual Labs L1 L2 L3 Session Slides, slide 15. Queen Mary Engineering School.
 
 [4] Sun, Y. (2026). QXU6028 Chapter 3 Carrier Counting and Mobility. Lecture cited in Coursework Report Guidance, slide 10. Check the slide number against the original lecture before submission.
+
+[5] Group P13 (2026). QXU6028 G13 classroom blind run. Archived result, run log, pipeline commit and figures.

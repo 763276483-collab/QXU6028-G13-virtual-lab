@@ -5,6 +5,7 @@
 Tool and date | Purpose and extent | Verification
 --- | --- | ---
 OpenAI Codex, 22 November 2026 | Reviewed the assignment materials and located the G13 dataset. Generated the L1 to L3 calculation pipeline, figures and English report draft. | Codex checked manifest hashes, numerical gates and reproducibility. Student verifier and further checks: [complete].
+OpenAI Codex, classroom-evidence integration | Verified the archived result, commit and log, then incorporated the reported values and roster into the report and records. | Checked the archive copies against the originals; student reviewer: [complete].
 [Add subsequent use] | [Prompt summary, output accepted, amended or discarded] | [Name and evidence]
 
 ## AI error ledger
@@ -21,9 +22,9 @@ The coursework rewards evidence of genuine physics errors. The software integrat
 
 Name and ID | Substantive L1 contribution | L2 contribution | L3 contribution | Report, verification or code evidence | Signature and date
 --- | --- | --- | --- | --- | ---
-[Member 1] | | | | |
-[Member 2] | | | | |
-[Member 3] | | | | |
-[Member 4] | | | | |
+马毓琛 (2023304327) | | | | |
+张昊 (2023304290) | | | | |
+常雅欣 (2023304286 / 231199498) | | | | |
+曾子芩 (2023304371 / 231200299) | | | | |
 
-The group should confirm that its completed entries match the work performed and the repository history. Add the real classroom checkpoints and timed blind evidence as applicable.
+The group should confirm that its completed entries match the work performed and the repository history. The archived classroom blind evidence is in classroom_blind/. Add the actual sign-offs and any separate checkpoint receipts as applicable.
