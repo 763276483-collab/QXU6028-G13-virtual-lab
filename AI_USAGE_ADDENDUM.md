@@ -1,0 +1,3 @@
+# AI usage log addendum
+
+OpenAI Codex was asked to compare the existing P13 submission with the supplied assessment brief, practical guide, report guidance and G13 archive. Its contributions were to check the original regular inputs, re-run the regular pipeline, validate the result schemas and provenance, repair the bundle checkout, restore the existing signed records and blind commit file to the repository, refine report wording and the supplied lecture reference, and assemble the local submission package. The recorded regular analysis code and the archived classroom numerical outputs were preserved. The original signed contribution declaration is retained as supplied; this addendum documents the follow-up assistance.
