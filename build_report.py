@@ -30,10 +30,10 @@ for reg,b in font_pair:
         regular,bold = "ReportRegular","ReportBold"
         break
 styles={
-    "title": ParagraphStyle("Title",fontName=bold,fontSize=22,leading=24,spaceAfter=11),
-    "heading": ParagraphStyle("Heading",fontName=bold,fontSize=13,leading=16,spaceBefore=10,spaceAfter=5,keepWithNext=True),
-    "body": ParagraphStyle("Body",fontName=regular,fontSize=10.1,leading=13.3,spaceAfter=8,alignment=TA_LEFT),
-    "caption": ParagraphStyle("Caption",fontName=regular,fontSize=8.7,leading=11.5,spaceAfter=8,textColor=colors.HexColor("#374151")),
+    "title": ParagraphStyle("Title",fontName=bold,fontSize=20,leading=22,spaceAfter=8),
+    "heading": ParagraphStyle("Heading",fontName=bold,fontSize=12.5,leading=15,spaceBefore=8,spaceAfter=4,keepWithNext=True),
+    "body": ParagraphStyle("Body",fontName=regular,fontSize=9.8,leading=12.6,spaceAfter=6.5,alignment=TA_LEFT),
+    "caption": ParagraphStyle("Caption",fontName=regular,fontSize=8.5,leading=11.0,spaceAfter=6,textColor=colors.HexColor("#374151")),
 }
 member_font = Path("C:/Windows/Fonts/Deng.ttf")
 if not member_font.exists():
@@ -71,6 +71,6 @@ def footer(canvas,doc):
     canvas.drawString(54,28,"QXU6028  |  G13")
     canvas.drawRightString(A4[0]-54,28,str(doc.page))
 
-doc=SimpleDocTemplate(str(gen/"G13_report.pdf"),pagesize=A4,rightMargin=52,leftMargin=52,
-                      topMargin=42,bottomMargin=42,title="Electrical Characterization of a Graphene on Sapphire Wafer")
+doc=SimpleDocTemplate(str(gen/"G13_report.pdf"),pagesize=A4,rightMargin=50,leftMargin=50,
+                      topMargin=36,bottomMargin=36,title="Electrical Characterization of a Graphene on Sapphire Wafer")
 doc.build(story,onFirstPage=footer,onLaterPages=footer)

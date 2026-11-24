@@ -6,9 +6,9 @@ QXU6028 Polymer Devices | Group P13 | Dataset code G13
 
 @member 张昊 | 2023304290
 
-@member 常雅欣 | 2023304286 / 231199498
+@member 常雅欣 | 2023304286
 
-@member 曾子芩 | 2023304371 / 231200299
+@member 曾子芩 | 2023304371
 
 ## Context
 
@@ -16,11 +16,11 @@ We characterized a simulated graphene-on-sapphire wafer from three sets of elect
 
 ## L1 Carrier Counting and Mobility
 
-To quantify how the carrier model changes the inferred mobility and sensor response, we used a linear DoS g(E) = cE on the positive-energy branch at 300 K. Both counts weight g(E) by the same Fermi occupation and convert it to an areal density, but the band-edge count integrates from E = 0 and the Fermi-window count from E = E<sub>F</sub>. As positive doping increases, the interval between zero and the Fermi level grows and contains increasingly occupied states included only in the band-edge count. The ratio C = n<sub>band</sub>/n<sub>Fermi</sub> therefore rises over the supplied sweep.
+To quantify how the carrier model changes the inferred mobility and sensor response, we used a linear DoS g(E) = cE on the positive-energy branch at 300 K, with c = 0.03839 states atom<super>−1</super> eV<super>−1</super>, areal atom density N<sub>A</sub> = 3.816 × 10<super>15</super> cm<super>−2</super>, and upper integration cutoff E<sub>max</sub> = 2.5 eV. Both counts weight g(E) by the same Fermi occupation and convert it to an areal density, but the band-edge count integrates from E = 0 and the Fermi-window count from E = E<sub>F</sub>. As positive doping increases, the interval between zero and the Fermi level grows and contains increasingly occupied states included only in the band-edge count. The ratio C = n<sub>band</sub>/n<sub>Fermi</sub> therefore rises over the supplied sweep.
 
 The calculated ratios were 1.000 at neutrality, 2.599 at 0.10 eV and 5.104 at 0.20 eV. Figure 1 places the C = 2 and 4 crossings at 0.07276 and 0.15735 eV. Recomputing the supplied band-edge sweep agreed within a maximum relative difference of 2.53 × 10<super>−12</super>. At the operating point the closed form and numerical Fermi-window count agreed to 3.58 × 10<super>−7</super> relative. These checks quantify numerical agreement. No uncertainty for the input DoS slope or sheet resistivity was supplied.
 
-At the exact metadata operating point of 0.168454 eV and 491.394 Ω/□, the band-edge count was 2.239 × 10<super>12</super> cm<super>−2</super> and the Fermi-window count was 5.227 × 10<super>11</super> cm<super>−2</super>. At fixed sheet resistivity, μ = 1/(enρ) gives 5.672 × 10<super>3</super> and 2.430 × 10<super>4</super> cm<super>2</super> V<super>−1</super> s<super>−1</super>, respectively. This is a change in inferred mobility for the same measurement. For a sensor whose response scales as 1/n, use a sensitivity 4.284 times the band-edge estimate at this operating point, conditional on that response model.
+At the exact metadata operating point of 0.168454 eV and 491.394 Ω/□, the band-edge count was 2.239 × 10<super>12</super> cm<super>−2</super> and the Fermi-window count was 5.227 × 10<super>11</super> cm<super>−2</super>. At fixed sheet resistivity, μ = 1/(enρ) gives 5.672 × 10<super>3</super> and 2.430 × 10<super>4</super> cm<super>2</super> V<super>−1</super> s<super>−1</super>, respectively—a factor 4.284 increase (μ<sub>F</sub> = C μ<sub>band</sub>) because fewer active carriers account for the same sheet conductivity, reflecting the extraction convention rather than a physical change in the wafer. For a sensor whose response scales as 1/n, use a sensitivity 4.284 times the band-edge estimate at this operating point, conditional on that response model.
 
 @figure L1_carrier_count
 Figure 1. Band-edge counts (blue) and Fermi-window counts (teal). The ratio plot marks the operating point in red and the C = 2 and 4 crossings in teal.
@@ -54,7 +54,7 @@ We retained the prescribed reference η = 1.331 × 10<super>−3</super>. Over f
 
 We passed mean-zero unit impulses at a central and an off-center pixel through the forward and inverse models. We estimated effective FWHM from the second moment of each reconstructed positive lobe, because the discrete half-height contour is coarse. The widths were 1.44 and 1.30 probe pitches, so we report the larger of these two tests, 1.44 pitches. This estimate is local to the tested positions. Narrower features can be attenuated or blurred.
 
-The RMS of the per-channel repeat standard deviations was 5.29 × 10<super>−7</super> in scan units. We reconstructed 500 independent Gaussian noise vectors using the per-channel repeat standard deviations. The 95th percentile of the largest absolute noise pixel was 8.95 × 10<super>−6</super> of the reference conductivity, or 0.000895 percentage points. We retained the prescribed single-repeat noise scale for the detection test, although the map itself uses the scan mean.
+The RMS of the per-channel repeat standard deviations was 5.29 × 10<super>−7</super> in scan units. We reconstructed 500 independent Gaussian noise vectors using the per-channel repeat standard deviations. The 95th percentile of the largest absolute noise pixel was 8.95 × 10<super>−6</super> of the reference conductivity, or 0.000895 percentage points. We retained the prescribed single-repeat noise scale for the detection test, although the map itself uses the scan mean. Because the forward matrix is rank-deficient with rapidly decaying singular values (Figure 4D), higher measurement noise would amplify poorly constrained spatial modes unless η is increased; stronger smoothing would in turn broaden the point-spread width, attenuate narrow peaks, and widen δ<sub>95</sub>, degrading confidence toward borderline decisions.
 
 The largest absolute reconstructed deviation was 1.7653%. Adding and subtracting the detection limit gives 1.7644% to 1.7662%, entirely below 3.0% [3]. The resolved map in Figure 4A is a clear pass under the prescribed repeat-noise model. This envelope omits model bias and the unobservable components of the true conductivity field. The 95th percentile is a noise calibration for the map maximum, not an unconditional probability that the wafer meets specification.
 
@@ -78,7 +78,7 @@ Figure 5. Original classroom blind conductivity map from the archived run.
 @page
 ## Transfer to a Printed Polymer OFET
 
-For a printed polymer organic field-effect transistor, the gate changes the occupation of a disordered distribution of localized states. Trapped charge need not contribute to current in the same way as mobile charge. The carrier-counting derivation μ = 1/(enρ) from Chapter 3, Carrier Counting and Mobility, is summarized in the course report guidance [4, slide 10], illustrating why mobility extracted from a resistance measurement depends on the inferred mobile density. For an OFET, a gate-charge model must distinguish trapped from mobile charge, and contact resistance can bias the channel resistance. Hopping mobility can also vary with field, temperature and carrier density, so the graphene cone and common-mobility transport closure do not carry over directly. Spatial variations in film thickness, morphology or trap density can contribute to differences in current across printed devices. A spatial map could support process control, provided its forward model describes the geometry and transport of the printed film, and its resolution is tested against the relevant defect size.
+For a printed polymer organic field-effect transistor, the gate changes the occupation of a disordered distribution of localized states. Trapped charge need not contribute to current in the same way as mobile charge. The carrier-counting derivation μ = 1/(enρ) in Chapter 3, Carrier Counting and Mobility [4], shows why mobility extracted from a sheet-resistance measurement depends directly on the inferred mobile carrier density. For an OFET, a gate-charge model must distinguish trapped from mobile charge, and contact resistance can bias the channel resistance. Hopping mobility can also vary with field, temperature and carrier density, so the graphene cone and common-mobility transport closure do not carry over directly. Spatial variations in film thickness, morphology or trap density can contribute to differences in current across printed devices. A spatial map could support process control, provided its forward model describes the geometry and transport of the printed film, and its resolution is tested against the relevant defect size.
 
 ## Conclusion
 
@@ -98,6 +98,6 @@ A second weakness is that the L3 noise test propagates independent channel scatt
 
 [3] Sun, Y. (2026). QXU6028 Virtual Labs L1 L2 L3 Session Slides, slide 15. Queen Mary Engineering School.
 
-[4] Sun, Y. (2026). QXU6028 Coursework Report Guidance, slide 10 (Chapter 3, Carrier Counting and Mobility derivation). Queen Mary Engineering School.
+[4] Sun, Y. (2026). QXU6028 Chapter 3: Carrier Counting and Mobility (QXU6028_Chapter_3_Carrier_Counting_and_Mobility_2026-27.pdf). Queen Mary Engineering School.
 
 [5] Group P13 (2026). QXU6028 G13 classroom blind run. Archived result, run log, pipeline commit and figures.

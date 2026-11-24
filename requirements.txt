@@ -1,2 +1,2 @@
-numpy==2.3.5
-reportlab==4.4.9
+numpy>=2.0
+reportlab>=4.0

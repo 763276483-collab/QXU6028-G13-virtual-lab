@@ -9,6 +9,7 @@ import numpy as np
 KB = 8.617333e-5
 AREAL_DENSITY = 3.816e15
 CHARGE = 1.602176634e-19
+TRAPZ = getattr(np, "trapezoid", None) or getattr(np, "trapz")
 
 
 def read_json(path):
@@ -31,7 +32,7 @@ def l1(data):
 
     def band(ef):
         e = np.linspace(0, 2.5, 20001)
-        return AREAL_DENSITY * c * np.trapezoid(e * fermi(e, ef, kt), e)
+        return AREAL_DENSITY * c * TRAPZ(e * fermi(e, ef, kt), e)
 
     def window(ef):
         return AREAL_DENSITY * c * kt * (ef * np.log(2) + np.pi**2 * kt / 12)
@@ -40,7 +41,7 @@ def l1(data):
     if params["T"] == 300:
         assert np.allclose(gates, [1, 2.6, 5.1], atol=.04)
     e = np.linspace(ef_op, 2.5, 20001)
-    crosscheck = AREAL_DENSITY * c * np.trapezoid(e * fermi(e, ef_op, kt), e)
+    crosscheck = AREAL_DENSITY * c * TRAPZ(e * fermi(e, ef_op, kt), e)
     assert np.isclose(crosscheck, window(ef_op), rtol=1e-5)
 
     sweep = rows["EF_eV"]
@@ -91,8 +92,8 @@ def l2(data):
     models = []
     for gap in gaps:
         dos = AREAL_DENSITY * np.maximum(np.abs(energy) - gap*kt/2, 0)
-        n = np.trapezoid(above * f * dos, energy, axis=1)
-        p = np.trapezoid(below * (1-f) * dos, energy, axis=1)
+        n = TRAPZ(above * f * dos, energy, axis=1)
+        p = TRAPZ(below * (1-f) * dos, energy, axis=1)
         models.append(normalize(np.column_stack([(p-n)/(p+n)**2, 1/(p+n)])))
     models = np.array(models)
 
@@ -202,13 +203,17 @@ def main():
     manifest = args.data/"manifest.json"
     if manifest.exists():
         for f in read_json(manifest)["files"]:
-            assert hashlib.sha256((args.data/f["name"]).read_bytes()).hexdigest() == f["sha256"], f["name"]
+            fp = args.data/f["name"]
+            if meta["dataset_set"] == "blind" and f["name"] == "blind_results.json" and not fp.exists():
+                continue
+            assert hashlib.sha256(fp.read_bytes()).hexdigest() == f["sha256"], f["name"]
     try:
         commit = subprocess.check_output(["git","rev-parse","HEAD"], cwd=root,
                                          stderr=subprocess.DEVNULL, text=True).strip()
     except (OSError, subprocess.CalledProcessError):
         commit = (root/"pipeline_commit.txt").read_text().strip() if (root/"pipeline_commit.txt").exists() else "unversioned"
-    result = read_json(args.data/"results_template.json")
+    tpl = args.data/"results_template.json"
+    result = read_json(tpl if tpl.exists() else root/"data"/"results_template.json")
     result.update(group=meta["group"], dataset_set=meta["dataset_set"], pipeline_commit=commit)
     r1,m1,p1 = l1(args.data)
     r2,m2,p2 = l2(args.data)
